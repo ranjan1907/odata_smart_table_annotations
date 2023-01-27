@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_IWSV" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <_-IWBEP_-I_MGW_SRG>
+    <_-IWBEP_-I_MGW_SRG>
+     <GROUP_TECH_NAME>/CLIN/HCM_ANNO_REF_SRV</GROUP_TECH_NAME>
+     <GROUP_VERSION>0001</GROUP_VERSION>
+     <MODEL_TECH_NAME>/CLIN/HCM_ANNO_REF_MDL</MODEL_TECH_NAME>
+     <MODEL_VERSION>0001</MODEL_VERSION>
+    </_-IWBEP_-I_MGW_SRG>
+   </_-IWBEP_-I_MGW_SRG>
+   <_-IWBEP_-I_MGW_SRH>
+    <_-IWBEP_-I_MGW_SRH>
+     <TECHNICAL_NAME>/CLIN/HCM_ANNO_REF_SRV</TECHNICAL_NAME>
+     <VERSION>0001</VERSION>
+     <NAMESPACE>/CLIN/</NAMESPACE>
+     <EXTERNAL_NAME>HCM_ANNO_REF_SRV</EXTERNAL_NAME>
+     <CLASS_NAME>/CLIN/CL_HCM_ANNO_REF_DPC_EXT</CLASS_NAME>
+     <CREATED_BY>PRAKASH</CREATED_BY>
+     <CREATED_TIMESTMP>20230127052109</CREATED_TIMESTMP>
+     <IS_SAP_SERVICE>-</IS_SAP_SERVICE>
+    </_-IWBEP_-I_MGW_SRH>
+   </_-IWBEP_-I_MGW_SRH>
+   <_-IWBEP_-I_MGW_SRT>
+    <_-IWBEP_-I_MGW_SRT>
+     <TECHNICAL_NAME>/CLIN/HCM_ANNO_REF_SRV</TECHNICAL_NAME>
+     <VERSION>0001</VERSION>
+     <LANGUAGE>E</LANGUAGE>
+     <DESCRIPTION>Annotations Service Reference</DESCRIPTION>
+    </_-IWBEP_-I_MGW_SRT>
+   </_-IWBEP_-I_MGW_SRT>
+  </asx:values>
+ </asx:abap>
+</abapGit>
