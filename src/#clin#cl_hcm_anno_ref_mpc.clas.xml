@@ -15,46 +15,46 @@
     <item>
      <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>Reserved Field/Unused Field</ENTRY>
+     <ENTRY>Begin Date</ENTRY>
      <LENGTH>132</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>002</KEY>
-     <ENTRY>Reserved Field/Unused Field</ENTRY>
-     <LENGTH>132</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>003</KEY>
-     <ENTRY>Reserved Field/Unused Field</ENTRY>
+     <ENTRY>Gender Key</ENTRY>
      <LENGTH>132</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>004</KEY>
-     <ENTRY>Reserved Field/Unused Field</ENTRY>
+     <ENTRY>Personnel Area</ENTRY>
      <LENGTH>132</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>005</KEY>
-     <ENTRY>Reserved Field/Unused Field of Length 2</ENTRY>
+     <ENTRY>Gender Key New</ENTRY>
      <LENGTH>132</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>006</KEY>
-     <ENTRY>Reserved Field/Unused Field of Length 2</ENTRY>
+     <ENTRY>Country Key New</ENTRY>
+     <LENGTH>132</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>007</KEY>
+     <ENTRY>Company Code New</ENTRY>
      <LENGTH>132</LENGTH>
     </item>
    </TPOOL>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CLSNAME>/CLIN/CL_HCM_ANNO_REF_MPC</CLSNAME>
-     <CMPNAME>DEFINE_INFOTYPE0001</CMPNAME>
+     <CMPNAME>DEFINE_EMPLOYEEDATA</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>DEFINE_INFOTYPE0001</DESCRIPT>
+     <DESCRIPT>DEFINE_EMPLOYEEDATA</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>/CLIN/CL_HCM_ANNO_REF_MPC</CLSNAME>

@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>/CLIN/HCM_ANNO_SHLP_ANNOTATION</CLSNAME>
+    <CLSNAME>/CLIN/CL_HCM_ANNO_REF</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Auxiliary Class for Value Help</DESCRIPT>
+    <DESCRIPT>Backend Class</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -13,10 +13,10 @@
    </VSEOCLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>/CLIN/HCM_ANNO_SHLP_ANNOTATION</CLSNAME>
-     <CMPNAME>SO_TEXT_ANNOTATION</CMPNAME>
+     <CLSNAME>/CLIN/CL_HCM_ANNO_REF</CLSNAME>
+     <CMPNAME>UPDATE_CUSTOM_TABLE</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Text Annotation</DESCRIPT>
+     <DESCRIPT>Test Method To Fill /CLIN/EMP_DATA</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
