@@ -53,127 +53,127 @@ CLASS /clin/hcm_anno_shlp_processor DEFINITION
       RETURNING
         VALUE(rv_focus)     TYPE string .
   PROTECTED SECTION.
-  PRIVATE SECTION.
+private section.
 
-    CLASS-DATA go_msg_container TYPE REF TO /iwbep/if_message_container .
+  class-data GO_MSG_CONTAINER type ref to /IWBEP/IF_MESSAGE_CONTAINER .
 
-    CLASS-METHODS ddic_name
-      IMPORTING
-        !iv_odata_name      TYPE csequence
-      RETURNING
-        VALUE(rv_ddic_name) TYPE shlpname .
-    CLASS-METHODS check_orderby
-      IMPORTING
-        !io_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS create_dynamic_structure
-      IMPORTING
-        !it_fields     TYPE ddfields
-      RETURNING
-        VALUE(ro_data) TYPE REF TO data
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS build_where_clause_from_filter
-      IMPORTING
-        !iv_tabname              TYPE char30 OPTIONAL
-        !iv_attribute_name       TYPE char30 OPTIONAL
-        !is_filter_select_option TYPE /iwbep/s_cod_select_option
-      EXPORTING
-        !et_field_ranges         TYPE rsds_trange .
-    CLASS-METHODS build_selopt_from_key
-      IMPORTING
-        !it_key_tab        TYPE /iwbep/t_mgw_tech_pairs
-      EXPORTING
-        !et_select_options TYPE /iwbep/t_mgw_select_option .
-    CLASS-METHODS add_table_2_where_string
-      IMPORTING
-        !iv_checktable    TYPE ddobjname
-        !iv_texttable     TYPE ddobjname
-      CHANGING
-        !cv_filter_string TYPE string .
-    CLASS-METHODS build_filter_string_from_key
-      IMPORTING
-        !it_key_tab       TYPE /iwbep/t_mgw_tech_pairs
-      CHANGING
-        !cv_filter_string TYPE string .
-    CLASS-METHODS create_dynamic_table
-      IMPORTING
-        !it_fields     TYPE ddfields
-      RETURNING
-        VALUE(ro_data) TYPE REF TO data
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS raise_technical_exception
-      IMPORTING
-        !iv_http_status_code TYPE /iwbep/mgw_http_status_code
-        !ix_previous         TYPE REF TO cx_root OPTIONAL
-        !iv_add_leading_msg  TYPE abap_bool DEFAULT abap_false
-        !iv_msg_type         TYPE symsgty DEFAULT sy-msgty
-        !iv_msg_id           TYPE symsgid DEFAULT sy-msgid
-        !iv_msg_number       TYPE symsgno DEFAULT sy-msgno
-        !iv_msg_v1           TYPE symsgv DEFAULT sy-msgv1
-        !iv_msg_v2           TYPE symsgv DEFAULT sy-msgv2
-        !iv_msg_v3           TYPE symsgv DEFAULT sy-msgv3
-        !iv_msg_v4           TYPE symsgv DEFAULT sy-msgv4
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS create_struct_from_fields
-      IMPORTING
-        !it_fields     TYPE ddfields
-      RETURNING
-        VALUE(ro_data) TYPE REF TO data
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS get_select_clause_ct
-      IMPORTING
-        !io_tech_request_context  TYPE REF TO /iwbep/if_mgw_req_entityset OPTIONAL
-        !i_checktab               TYPE selmethod
-        !i_texttab                TYPE selmethtxt OPTIONAL
-        !i_intdescr               TYPE shlp_intds OPTIONAL
-        !it_fielddescr            TYPE ddfields OPTIONAL
-        !it_filter_select_options TYPE /iwbep/t_mgw_select_option OPTIONAL
-      EXPORTING
-        !et_entityset             TYPE STANDARD TABLE
-        !et_where_clauses         TYPE rsds_twhere
-        !es_response_context      TYPE /iwbep/if_mgw_appl_srv_runtime=>ty_s_mgw_response_context
-        !ev_dbtab_syntax          TYPE string
-        !ev_select                TYPE string
-      CHANGING
-        !rv_where_clause          TYPE string
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS create_tab_from_fields
-      IMPORTING
-        !it_fields     TYPE ddfields
-      RETURNING
-        VALUE(ro_data) TYPE REF TO data
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS get_values_no_type_ahead
-      IMPORTING
-        !iv_search_help          TYPE shlpname
-        !iv_search_help_field    TYPE fieldname
-        !io_tech_request_cntxt   TYPE REF TO /iwbep/if_mgw_req_entity OPTIONAL
-        !io_tech_request_context TYPE REF TO /iwbep/if_mgw_req_entityset OPTIONAL
-        !iv_raw_filter           TYPE string OPTIONAL
-      EXPORTING
-        !er_entity               TYPE REF TO data
-        !er_entityset            TYPE REF TO data
-        !et_entityset            TYPE ANY TABLE
-        !es_response_context     TYPE /iwbep/if_mgw_appl_srv_runtime=>ty_s_mgw_response_context
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
-    CLASS-METHODS determine_component_type
-      IMPORTING
-        !id_inttype              TYPE inttype
-        !id_length               TYPE i
-        !id_intlength            TYPE i
-        !id_decimals             TYPE i
-      RETURNING
-        VALUE(ro_component_type) TYPE REF TO cl_abap_datadescr
-      RAISING
-        /iwbep/cx_mgw_tech_exception .
+  class-methods DDIC_NAME
+    importing
+      !IV_ODATA_NAME type CSEQUENCE
+    returning
+      value(RV_DDIC_NAME) type SHLPNAME .
+  class-methods CHECK_ORDERBY
+    importing
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITYSET
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods CREATE_DYNAMIC_STRUCTURE
+    importing
+      !IT_FIELDS type DDFIELDS
+    returning
+      value(RO_DATA) type ref to DATA
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods BUILD_WHERE_CLAUSE_FROM_FILTER
+    importing
+      !IV_TABNAME type CHAR30 optional
+      !IV_ATTRIBUTE_NAME type CHAR30 optional
+      !IS_FILTER_SELECT_OPTION type /IWBEP/S_COD_SELECT_OPTION
+    exporting
+      !ET_FIELD_RANGES type RSDS_TRANGE .
+  class-methods BUILD_SELOPT_FROM_KEY
+    importing
+      !IT_KEY_TAB type /IWBEP/T_MGW_TECH_PAIRS
+    exporting
+      !ET_SELECT_OPTIONS type /IWBEP/T_MGW_SELECT_OPTION .
+  class-methods ADD_TABLE_2_WHERE_STRING
+    importing
+      !IV_CHECKTABLE type DDOBJNAME
+      !IV_TEXTTABLE type DDOBJNAME
+    changing
+      !CV_FILTER_STRING type STRING .
+  class-methods BUILD_FILTER_STRING_FROM_KEY
+    importing
+      !IT_KEY_TAB type /IWBEP/T_MGW_TECH_PAIRS
+    changing
+      !CV_FILTER_STRING type STRING .
+  class-methods CREATE_DYNAMIC_TABLE
+    importing
+      !IT_FIELDS type DDFIELDS
+    returning
+      value(RO_DATA) type ref to DATA
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods RAISE_TECHNICAL_EXCEPTION
+    importing
+      !IV_HTTP_STATUS_CODE type /IWBEP/MGW_HTTP_STATUS_CODE
+      !IX_PREVIOUS type ref to CX_ROOT optional
+      !IV_ADD_LEADING_MSG type ABAP_BOOL default ABAP_FALSE
+      !IV_MSG_TYPE type SYMSGTY default SY-MSGTY
+      !IV_MSG_ID type SYMSGID default SY-MSGID
+      !IV_MSG_NUMBER type SYMSGNO default SY-MSGNO
+      !IV_MSG_V1 type SYMSGV default SY-MSGV1
+      !IV_MSG_V2 type SYMSGV default SY-MSGV2
+      !IV_MSG_V3 type SYMSGV default SY-MSGV3
+      !IV_MSG_V4 type SYMSGV default SY-MSGV4
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods CREATE_STRUCT_FROM_FIELDS
+    importing
+      !IT_FIELDS type DDFIELDS
+    returning
+      value(RO_DATA) type ref to DATA
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods GET_SELECT_CLAUSE_CT
+    importing
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITYSET optional
+      !I_CHECKTAB type SELMETHOD
+      !I_TEXTTAB type SELMETHTXT optional
+      !I_INTDESCR type SHLP_INTDS optional
+      !IT_FIELDDESCR type DDFIELDS optional
+      !IT_FILTER_SELECT_OPTIONS type /IWBEP/T_MGW_SELECT_OPTION optional
+    exporting
+      !ET_ENTITYSET type STANDARD TABLE
+      !ET_WHERE_CLAUSES type RSDS_TWHERE
+      !ES_RESPONSE_CONTEXT type /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+      !EV_DBTAB_SYNTAX type STRING
+      !EV_SELECT type STRING
+    changing
+      !RV_WHERE_CLAUSE type STRING
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods CREATE_TAB_FROM_FIELDS
+    importing
+      !IT_FIELDS type DDFIELDS
+    returning
+      value(RO_DATA) type ref to DATA
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods GET_VALUES_NO_TYPE_AHEAD
+    importing
+      !IV_SEARCH_HELP type SHLPNAME
+      !IV_SEARCH_HELP_FIELD type FIELDNAME
+      !IO_TECH_REQUEST_CNTXT type ref to /IWBEP/IF_MGW_REQ_ENTITY optional
+      !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITYSET optional
+      !IV_RAW_FILTER type STRING optional
+    exporting
+      !ER_ENTITY type ref to DATA
+      !ER_ENTITYSET type ref to DATA
+      !ET_ENTITYSET type ANY TABLE
+      !ES_RESPONSE_CONTEXT type /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
+  class-methods DETERMINE_COMPONENT_TYPE
+    importing
+      !ID_INTTYPE type INTTYPE
+      !ID_LENGTH type I
+      !ID_INTLENGTH type I
+      !ID_DECIMALS type I
+    returning
+      value(RO_COMPONENT_TYPE) type ref to CL_ABAP_DATADESCR
+    raising
+      /IWBEP/CX_MGW_TECH_EXCEPTION .
 ENDCLASS.
 
 
@@ -601,7 +601,7 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
 
     lv_entity_type_name = io_tech_request_context->get_entity_type_name( ).
 
-    IF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_fv.
+    IF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_fv.
       ev_done = abap_true.
 
       lv_domain = ddic_name( lv_entity_type_name+6 ).
@@ -617,7 +617,7 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
           et_entityset            = <values> ).
       er_entity = REF #( <values>[ 1 ] ).
 
-    ELSEIF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_sh.
+    ELSEIF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_sh.
       ev_done = abap_true.
 
       lv_search_help       = ddic_name( lv_entity_type_name+6 ).
@@ -631,13 +631,13 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
         IMPORTING
           er_entity               = er_entity ).
 
-    ELSEIF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_ch
-        OR lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_ct.
+    ELSEIF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_ch
+        OR lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_ct.
       ev_done = abap_true.
 
       ls_search_help-shlpname = lv_entity_type_name+6.
 *      ls_search_help-shlptype = lv_entity_type_name+3(2).
-      ls_search_help-shlptype = cl_fkk_shlp_annotation=>gc_ch+3(2).
+      ls_search_help-shlptype = /clin/hcm_anno_shlp_annotation=>gc_ch+3(2).
 *      When shlptype is 'CT', Function Module DD_SHLP_GET_HELPMETHOD must be called with type 'CH' (internal message 748242 2014)
 
       CALL FUNCTION 'DD_SHLP_GET_HELPMETHOD'
@@ -659,7 +659,7 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
       lt_entityset = create_dynamic_table( it_fields = ls_search_help-fielddescr ).
       ASSIGN lt_entityset->* TO <values>.
 
-      IF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_ch.
+      IF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_ch.
         ls_search_help-intdescr-selmethod = cl_abap_dyn_prg=>escape_quotes( ls_search_help-intdescr-selmethod ).
         lv_tab = ls_search_help-intdescr-selmethod.
         TRY.
@@ -765,7 +765,7 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
     ELSE.
       lv_rows = 10000.
     ENDIF.
-    IF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_fv.
+    IF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_fv.
       ev_done = abap_true.
 
       lv_domain = ddic_name( lv_entity_type_name+6 ).
@@ -781,7 +781,7 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
           et_entityset            = <values>
           es_response_context     = es_response_context ).
 
-    ELSEIF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_sh.
+    ELSEIF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_sh.
       ev_done = abap_true.
 
       lv_search_help       = ddic_name( lv_entity_type_name+6 ).
@@ -801,8 +801,8 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
           er_entityset            = er_entityset
           es_response_context     = es_response_context ).
 
-    ELSEIF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_ch
-        OR lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_ct.
+    ELSEIF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_ch
+        OR lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_ct.
       ev_done = abap_true.
 
       IF  io_tech_request_context->get_search_string( ) IS NOT INITIAL.
@@ -818,10 +818,11 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
       DATA(lt_selopt) = lo_filter->get_filter_select_options( ).
       DATA(lv_filter_string) = lo_filter->get_filter_string( ).
 
-      ls_search_help-shlpname = lv_entity_type_name+6.
+*      ls_search_help-shlpname = lv_entity_type_name+6. "INTEGRTR
+      ls_search_help-shlpname       = ddic_name( lv_entity_type_name+6 ). "INTEGRTR
 *      When shlptype is 'CT', Function Module DD_SHLP_GET_HELPMETHOD must be always called with type 'CH' (internal message 748242 2014)
 *      ls_search_help-shlptype = lv_entity_type_name+3(2).
-      ls_search_help-shlptype = cl_fkk_shlp_annotation=>gc_ch+3(2).
+      ls_search_help-shlptype = /clin/hcm_anno_shlp_annotation=>gc_ch+3(2).
 
       CALL FUNCTION 'DD_SHLP_GET_HELPMETHOD'
         CHANGING
@@ -832,7 +833,7 @@ CLASS /CLIN/HCM_ANNO_SHLP_PROCESSOR IMPLEMENTATION.
 
 
 
-      IF lv_entity_type_name(6) = cl_fkk_shlp_annotation=>gc_ch.
+      IF lv_entity_type_name(6) = /clin/hcm_anno_shlp_annotation=>gc_ch.
         TRY.
             lv_tab = ls_search_help-intdescr-selmethod.
             TRY.

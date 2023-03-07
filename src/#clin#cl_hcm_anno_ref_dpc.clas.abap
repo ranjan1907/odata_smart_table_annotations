@@ -23,7 +23,7 @@ protected section.
 
   data mo_injection type ref to /IWBEP/IF_SB_GEN_DPC_INJECTION .
 
-  methods INFOTYPE0001SET_CREATE_ENTITY
+  methods EMPLOYEEDATASET_CREATE_ENTITY
     importing
       !IV_ENTITY_NAME type STRING
       !IV_ENTITY_SET_NAME type STRING
@@ -33,11 +33,11 @@ protected section.
       !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
       !IO_DATA_PROVIDER type ref to /IWBEP/IF_MGW_ENTRY_PROVIDER optional
     exporting
-      !ER_ENTITY type /CLIN/CL_HCM_ANNO_REF_MPC=>TS_INFOTYPE0001
+      !ER_ENTITY type /CLIN/CL_HCM_ANNO_REF_MPC=>TS_EMPLOYEEDATA
     raising
       /IWBEP/CX_MGW_BUSI_EXCEPTION
       /IWBEP/CX_MGW_TECH_EXCEPTION .
-  methods INFOTYPE0001SET_DELETE_ENTITY
+  methods EMPLOYEEDATASET_DELETE_ENTITY
     importing
       !IV_ENTITY_NAME type STRING
       !IV_ENTITY_SET_NAME type STRING
@@ -48,7 +48,7 @@ protected section.
     raising
       /IWBEP/CX_MGW_BUSI_EXCEPTION
       /IWBEP/CX_MGW_TECH_EXCEPTION .
-  methods INFOTYPE0001SET_GET_ENTITY
+  methods EMPLOYEEDATASET_GET_ENTITY
     importing
       !IV_ENTITY_NAME type STRING
       !IV_ENTITY_SET_NAME type STRING
@@ -58,12 +58,12 @@ protected section.
       !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITY optional
       !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
     exporting
-      !ER_ENTITY type /CLIN/CL_HCM_ANNO_REF_MPC=>TS_INFOTYPE0001
+      !ER_ENTITY type /CLIN/CL_HCM_ANNO_REF_MPC=>TS_EMPLOYEEDATA
       !ES_RESPONSE_CONTEXT type /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_ENTITY_CNTXT
     raising
       /IWBEP/CX_MGW_BUSI_EXCEPTION
       /IWBEP/CX_MGW_TECH_EXCEPTION .
-  methods INFOTYPE0001SET_GET_ENTITYSET
+  methods EMPLOYEEDATASET_GET_ENTITYSET
     importing
       !IV_ENTITY_NAME type STRING
       !IV_ENTITY_SET_NAME type STRING
@@ -77,12 +77,12 @@ protected section.
       !IV_SEARCH_STRING type STRING
       !IO_TECH_REQUEST_CONTEXT type ref to /IWBEP/IF_MGW_REQ_ENTITYSET optional
     exporting
-      !ET_ENTITYSET type /CLIN/CL_HCM_ANNO_REF_MPC=>TT_INFOTYPE0001
+      !ET_ENTITYSET type /CLIN/CL_HCM_ANNO_REF_MPC=>TT_EMPLOYEEDATA
       !ES_RESPONSE_CONTEXT type /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
     raising
       /IWBEP/CX_MGW_BUSI_EXCEPTION
       /IWBEP/CX_MGW_TECH_EXCEPTION .
-  methods INFOTYPE0001SET_UPDATE_ENTITY
+  methods EMPLOYEEDATASET_UPDATE_ENTITY
     importing
       !IV_ENTITY_NAME type STRING
       !IV_ENTITY_SET_NAME type STRING
@@ -92,7 +92,7 @@ protected section.
       !IT_NAVIGATION_PATH type /IWBEP/T_MGW_NAVIGATION_PATH
       !IO_DATA_PROVIDER type ref to /IWBEP/IF_MGW_ENTRY_PROVIDER optional
     exporting
-      !ER_ENTITY type /CLIN/CL_HCM_ANNO_REF_MPC=>TS_INFOTYPE0001
+      !ER_ENTITY type /CLIN/CL_HCM_ANNO_REF_MPC=>TS_EMPLOYEEDATA
     raising
       /IWBEP/CX_MGW_BUSI_EXCEPTION
       /IWBEP/CX_MGW_TECH_EXCEPTION .
@@ -110,25 +110,25 @@ CLASS /CLIN/CL_HCM_ANNO_REF_DPC IMPLEMENTATION.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CREATE_ENTITY.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_CRT_ENTITY_BASE
-*&* This class has been generated on 27.01.2023 11:23:21 in client 100
+*&* This class has been generated on 03.02.2023 16:36:13 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /CLIN/CL_HCM_ANNO_REF_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
 
- DATA infotype0001set_create_entity TYPE /clin/cl_hcm_anno_ref_mpc=>ts_infotype0001.
+ DATA employeedataset_create_entity TYPE /clin/cl_hcm_anno_ref_mpc=>ts_employeedata.
  DATA lv_entityset_name TYPE string.
 
 lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
 *-------------------------------------------------------------------------*
-*             EntitySet -  Infotype0001Set
+*             EntitySet -  EmployeeDataSet
 *-------------------------------------------------------------------------*
-     WHEN 'Infotype0001Set'.
+     WHEN 'EmployeeDataSet'.
 *     Call the entity set generated method
-    infotype0001set_create_entity(
+    employeedataset_create_entity(
          EXPORTING iv_entity_name     = iv_entity_name
                    iv_entity_set_name = iv_entity_set_name
                    iv_source_name     = iv_source_name
@@ -136,12 +136,12 @@ CASE lv_entityset_name.
                    it_key_tab         = it_key_tab
                    it_navigation_path = it_navigation_path
                    io_tech_request_context = io_tech_request_context
-       	 IMPORTING er_entity          = infotype0001set_create_entity
+       	 IMPORTING er_entity          = employeedataset_create_entity
     ).
 *     Send specific entity data to the caller interfaces
     copy_data_to_ref(
       EXPORTING
-        is_data = infotype0001set_create_entity
+        is_data = employeedataset_create_entity
       CHANGING
         cr_data = er_entity
    ).
@@ -165,7 +165,7 @@ ENDCASE.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~DELETE_ENTITY.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_DEL_ENTITY_BASE
-*&* This class has been generated on 27.01.2023 11:23:21 in client 100
+*&* This class has been generated on 03.02.2023 16:36:13 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
@@ -178,11 +178,11 @@ lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
 *-------------------------------------------------------------------------*
-*             EntitySet -  Infotype0001Set
+*             EntitySet -  EmployeeDataSet
 *-------------------------------------------------------------------------*
-      when 'Infotype0001Set'.
+      when 'EmployeeDataSet'.
 *     Call the entity set generated method
-     infotype0001set_delete_entity(
+     employeedataset_delete_entity(
           EXPORTING iv_entity_name     = iv_entity_name
                     iv_entity_set_name = iv_entity_set_name
                     iv_source_name     = iv_source_name
@@ -207,14 +207,14 @@ CASE lv_entityset_name.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITY.
 *&-----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_GETENTITY_BASE
-*&* This class has been generated  on 27.01.2023 11:23:21 in client 100
+*&* This class has been generated  on 03.02.2023 16:36:13 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /CLIN/CL_HCM_ANNO_REF_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
 
- DATA infotype0001set_get_entity TYPE /clin/cl_hcm_anno_ref_mpc=>ts_infotype0001.
+ DATA employeedataset_get_entity TYPE /clin/cl_hcm_anno_ref_mpc=>ts_employeedata.
  DATA lv_entityset_name TYPE string.
  DATA lr_entity TYPE REF TO data.       "#EC NEEDED
 
@@ -222,26 +222,26 @@ lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
 *-------------------------------------------------------------------------*
-*             EntitySet -  Infotype0001Set
+*             EntitySet -  EmployeeDataSet
 *-------------------------------------------------------------------------*
-      WHEN 'Infotype0001Set'.
+      WHEN 'EmployeeDataSet'.
 *     Call the entity set generated method
-          infotype0001set_get_entity(
+          employeedataset_get_entity(
                EXPORTING iv_entity_name     = iv_entity_name
                          iv_entity_set_name = iv_entity_set_name
                          iv_source_name     = iv_source_name
                          it_key_tab         = it_key_tab
                          it_navigation_path = it_navigation_path
                          io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = infotype0001set_get_entity
+             	 IMPORTING er_entity          = employeedataset_get_entity
                          es_response_context = es_response_context
           ).
 
-        IF infotype0001set_get_entity IS NOT INITIAL.
+        IF employeedataset_get_entity IS NOT INITIAL.
 *     Send specific entity data to the caller interface
           copy_data_to_ref(
             EXPORTING
-              is_data = infotype0001set_get_entity
+              is_data = employeedataset_get_entity
             CHANGING
               cr_data = er_entity
           ).
@@ -268,24 +268,24 @@ CASE lv_entityset_name.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITYSET.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TMP_ENTITYSET_BASE
-*&* This class has been generated on 27.01.2023 11:23:21 in client 100
+*&* This class has been generated on 03.02.2023 16:36:13 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /CLIN/CL_HCM_ANNO_REF_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
- DATA infotype0001set_get_entityset TYPE /clin/cl_hcm_anno_ref_mpc=>tt_infotype0001.
+ DATA employeedataset_get_entityset TYPE /clin/cl_hcm_anno_ref_mpc=>tt_employeedata.
  DATA lv_entityset_name TYPE string.
 
 lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
 *-------------------------------------------------------------------------*
-*             EntitySet -  Infotype0001Set
+*             EntitySet -  EmployeeDataSet
 *-------------------------------------------------------------------------*
-   WHEN 'Infotype0001Set'.
+   WHEN 'EmployeeDataSet'.
 *     Call the entity set generated method
-      infotype0001set_get_entityset(
+      employeedataset_get_entityset(
         EXPORTING
          iv_entity_name = iv_entity_name
          iv_entity_set_name = iv_entity_set_name
@@ -299,13 +299,13 @@ CASE lv_entityset_name.
          iv_search_string = iv_search_string
          io_tech_request_context = io_tech_request_context
        IMPORTING
-         et_entityset = infotype0001set_get_entityset
+         et_entityset = employeedataset_get_entityset
          es_response_context = es_response_context
        ).
 *     Send specific entity data to the caller interface
       copy_data_to_ref(
         EXPORTING
-          is_data = infotype0001set_get_entityset
+          is_data = employeedataset_get_entityset
         CHANGING
           cr_data = er_entityset
       ).
@@ -333,14 +333,14 @@ CASE lv_entityset_name.
   method /IWBEP/IF_MGW_APPL_SRV_RUNTIME~UPDATE_ENTITY.
 *&----------------------------------------------------------------------------------------------*
 *&  Include           /IWBEP/DPC_TEMP_UPD_ENTITY_BASE
-*&* This class has been generated on 27.01.2023 11:23:21 in client 100
+*&* This class has been generated on 03.02.2023 16:36:13 in client 100
 *&*
 *&*       WARNING--> NEVER MODIFY THIS CLASS <--WARNING
 *&*   If you want to change the DPC implementation, use the
 *&*   generated methods inside the DPC provider subclass - /CLIN/CL_HCM_ANNO_REF_DPC_EXT
 *&-----------------------------------------------------------------------------------------------*
 
- DATA infotype0001set_update_entity TYPE /clin/cl_hcm_anno_ref_mpc=>ts_infotype0001.
+ DATA employeedataset_update_entity TYPE /clin/cl_hcm_anno_ref_mpc=>ts_employeedata.
  DATA lv_entityset_name TYPE string.
  DATA lr_entity TYPE REF TO data. "#EC NEEDED
 
@@ -348,11 +348,11 @@ lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
 
 CASE lv_entityset_name.
 *-------------------------------------------------------------------------*
-*             EntitySet -  Infotype0001Set
+*             EntitySet -  EmployeeDataSet
 *-------------------------------------------------------------------------*
-      WHEN 'Infotype0001Set'.
+      WHEN 'EmployeeDataSet'.
 *     Call the entity set generated method
-          infotype0001set_update_entity(
+          employeedataset_update_entity(
                EXPORTING iv_entity_name     = iv_entity_name
                          iv_entity_set_name = iv_entity_set_name
                          iv_source_name     = iv_source_name
@@ -360,13 +360,13 @@ CASE lv_entityset_name.
                          it_key_tab         = it_key_tab
                          it_navigation_path = it_navigation_path
                          io_tech_request_context = io_tech_request_context
-             	 IMPORTING er_entity          = infotype0001set_update_entity
+             	 IMPORTING er_entity          = employeedataset_update_entity
           ).
-       IF infotype0001set_update_entity IS NOT INITIAL.
+       IF employeedataset_update_entity IS NOT INITIAL.
 *     Send specific entity data to the caller interface
           copy_data_to_ref(
             EXPORTING
-              is_data = infotype0001set_update_entity
+              is_data = employeedataset_update_entity
             CHANGING
               cr_data = er_entity
           ).
@@ -509,42 +509,42 @@ lo_logger = /iwbep/if_mgw_conv_srv_runtime~get_logger( ).
   endmethod.
 
 
-  method INFOTYPE0001SET_CREATE_ENTITY.
+  method EMPLOYEEDATASET_CREATE_ENTITY.
   RAISE EXCEPTION TYPE /iwbep/cx_mgw_not_impl_exc
     EXPORTING
       textid = /iwbep/cx_mgw_not_impl_exc=>method_not_implemented
-      method = 'INFOTYPE0001SET_CREATE_ENTITY'.
+      method = 'EMPLOYEEDATASET_CREATE_ENTITY'.
   endmethod.
 
 
-  method INFOTYPE0001SET_DELETE_ENTITY.
+  method EMPLOYEEDATASET_DELETE_ENTITY.
   RAISE EXCEPTION TYPE /iwbep/cx_mgw_not_impl_exc
     EXPORTING
       textid = /iwbep/cx_mgw_not_impl_exc=>method_not_implemented
-      method = 'INFOTYPE0001SET_DELETE_ENTITY'.
+      method = 'EMPLOYEEDATASET_DELETE_ENTITY'.
   endmethod.
 
 
-  method INFOTYPE0001SET_GET_ENTITY.
+  method EMPLOYEEDATASET_GET_ENTITY.
   RAISE EXCEPTION TYPE /iwbep/cx_mgw_not_impl_exc
     EXPORTING
       textid = /iwbep/cx_mgw_not_impl_exc=>method_not_implemented
-      method = 'INFOTYPE0001SET_GET_ENTITY'.
+      method = 'EMPLOYEEDATASET_GET_ENTITY'.
   endmethod.
 
 
-  method INFOTYPE0001SET_GET_ENTITYSET.
+  method EMPLOYEEDATASET_GET_ENTITYSET.
   RAISE EXCEPTION TYPE /iwbep/cx_mgw_not_impl_exc
     EXPORTING
       textid = /iwbep/cx_mgw_not_impl_exc=>method_not_implemented
-      method = 'INFOTYPE0001SET_GET_ENTITYSET'.
+      method = 'EMPLOYEEDATASET_GET_ENTITYSET'.
   endmethod.
 
 
-  method INFOTYPE0001SET_UPDATE_ENTITY.
+  method EMPLOYEEDATASET_UPDATE_ENTITY.
   RAISE EXCEPTION TYPE /iwbep/cx_mgw_not_impl_exc
     EXPORTING
       textid = /iwbep/cx_mgw_not_impl_exc=>method_not_implemented
-      method = 'INFOTYPE0001SET_UPDATE_ENTITY'.
+      method = 'EMPLOYEEDATASET_UPDATE_ENTITY'.
   endmethod.
 ENDCLASS.

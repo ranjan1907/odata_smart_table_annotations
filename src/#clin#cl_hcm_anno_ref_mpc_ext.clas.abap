@@ -22,9 +22,7 @@ CLASS /CLIN/CL_HCM_ANNO_REF_MPC_EXT IMPLEMENTATION.
     super->define( ).
 
 
-
     /clin/hcm_anno_text_annotation=>create( model )->for_all( ).
-
 
     /clin/hcm_anno_shlp_annotation=>create_for_all(
             io_odata_model         = model

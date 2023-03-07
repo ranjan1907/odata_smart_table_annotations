@@ -102,7 +102,7 @@ private section.
 
   data MO_PARAMETERS type ref to /IWBEP/IF_MGW_VOCAN_COLLECTION .
   class-data SV_NAMESPACE type STRING .
-  class-data SO_TEXT_ANNOTATION type ref to CL_FKK_TEXT_ANNOTATION .
+  class-data SO_TEXT_ANNOTATION type ref to /CLIN/HCM_ANNO_TEXT_ANNOTATION .
 
   class-methods SEARCH_HELP_IS_USABLE
     importing
@@ -534,7 +534,7 @@ METHOD create_for_all.
 
 *    SET RUN TIME ANALYZER ON.
 
-  so_text_annotation = cl_fkk_text_annotation=>create( io_odata_model ).
+  so_text_annotation = /clin/hcm_anno_text_annotation=>create( io_odata_model ).
 
   IF lines( it_fields ) > 0.
     lv_whitelisted_only = abap_true.
